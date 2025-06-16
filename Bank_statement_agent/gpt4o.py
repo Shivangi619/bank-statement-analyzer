@@ -9,9 +9,8 @@ import re
 import warnings
 from pdfminer.pdfparser import PDFSyntaxError
 
-#  Set your OpenAI API Key
-openai_api_key = "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"  
-client = openai.OpenAI(api_key=openai_api_key)
+# Load from Streamlit secrets
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 warnings.filterwarnings("ignore", category=UserWarning)
 st.set_page_config(page_title="Bank Statement Analyzer", layout="wide")
@@ -146,7 +145,7 @@ def ask_gpt4o(df, user_question=None):
         {"role": "user", "content": f"This is my bank statement:\n{context}\n\n{user_question or 'Please summarize the spending by category.'}"}
     ]
 
-    client = openai.OpenAI(api_key=openai_api_key)
+    client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
     try:
         response = client.chat.completions.create(
