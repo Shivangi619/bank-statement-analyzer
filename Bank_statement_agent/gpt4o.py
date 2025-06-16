@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import openai
+from openai import OpenAI
 import pdfplumber
 import pytesseract
 from pdf2image import convert_from_bytes
